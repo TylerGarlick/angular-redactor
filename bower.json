@@ -1,0 +1,29 @@
+{
+  "name": "angular-redactor",
+  "main": "angular-redactor.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/TylerGarlick/angular-redactor",
+  "authors": [
+    "Tyler Garlick <tjgarlick@gmail.com>"
+  ],
+  "description": "Directive for redactor WYSIWYG editor",
+  "keywords": [
+    "Redactor",
+    "WYSIWYG",
+    "Angular",
+    "Directives"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "redactor" : "libs/redactor",
+    "jquery": "*",
+    "angular": "*"
+  }
+}
