@@ -23,7 +23,6 @@
     "tests"
   ],
   "dependencies": {
-    "redactor" : "libs/redactor",
     "jquery": "*",
     "angular": "*"
   }
