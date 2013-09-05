@@ -32,6 +32,9 @@ With Options
 Notice the optoins attribute is a direct mapping to redactor options.
 
 
+Check out the demo folder where you can see a working example.  https://github.com/TylerGarlick/angular-redactor/tree/master/demo
+
+
 
 Bower Installation
 --------------
