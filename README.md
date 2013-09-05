@@ -29,7 +29,7 @@ With Options
 ```html
 <textarea ng-model="content" redactor options="{}" cols="30" rows="10"></textarea>
 ```
-Notice the optoins attribute is a direct mapping to redactor options.
+Notice the options attribute is a direct mapping to redactor options.
 
 
 Check out the demo folder where you can see a working example.  https://github.com/TylerGarlick/angular-redactor/tree/master/demo
