@@ -24,6 +24,7 @@
   ],
   "dependencies": {
     "jquery": "*",
-    "angular": "*"
+    "angular": "*",
+    "angular-route": "~1.2.0-rc.2"
   }
 }
