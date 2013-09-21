@@ -5,7 +5,7 @@
    * usage: <textarea ng-model="content" redactor></textarea>
    *
    *    additional options:
-   *      redactor: hash (pass in a redactor options hash)
+   *      options: hash (pass in a redactor options hash)
    *
    */
   angular.module('angular-redactor', [])
@@ -13,31 +13,25 @@
       return {
         restrict: 'A',
         require: "ngModel",
-        link: function (scope, element, attrs, ngModel) {
+        link: function (scope, elm, attrs, ngModel) {
           var updateModel = function updateModel(value) {
               scope.$apply(function () {
                 ngModel.$setViewValue(value);
               });
-            },
-            options = {
+            }, options = {
               changeCallback: updateModel
-            },
-            additionalOptions = attrs.redactor ?
-                                scope.$eval(attrs.redactor) : {},
+            }, additionalOptions = angular.isDefined(attrs.options) ?
+                                   scope.$eval(attrs.options) : {},
             editor;
-
           angular.extend(options, additionalOptions);
 
-          // put in timeout to avoid $digest collision.  call render() to
-          // set the initial value.
           $timeout(function () {
-            editor = element.redactor(options);
-            ngModel.$render();
+            editor = elm.redactor(options);
           });
 
           ngModel.$render = function () {
             if (angular.isDefined(editor)) {
-              element.redactor('set', ngModel.$viewValue || '');
+              elm.redactor('set', ngModel.$viewValue || '')
             }
           };
         }
