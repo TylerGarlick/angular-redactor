@@ -1,7 +1,7 @@
 {
   "name": "angular-redactor",
   "main": "angular-redactor.js",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "homepage": "https://github.com/TylerGarlick/angular-redactor",
   "authors": [
     "Tyler Garlick <tjgarlick@gmail.com>"

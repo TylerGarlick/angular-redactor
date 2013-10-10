@@ -1,4 +1,33 @@
-<textarea ng-model="content" redactor options="redactorOptions" cols="30" rows="10"></textarea>
+<h1>Demo</h1>
 
-{{content}}
-<button ng-click="changeContent()">Change content</button>
+<div class="panel panel-default">
+  <div class="panel-heading"><h3>Default</h3></div>
+  <div class="panel-body">
+    <div class="form-group">
+      <textarea ng-model="content" redactor cols="30" rows="10"></textarea>
+    </div>
+    <br/>
+    <p>{{content}}</p>
+    <div class="form-group">
+      <button class="btn btn-default" ng-click="changeContent()">Change content</button>
+    </div>
+
+    <strong>Markup</strong>
+    <pre>
+      &lt;textarea ng-model="content" redactor cols="30" rows="10"&gt;&lt;/textarea&gt;
+    </pre>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Air Option</div>
+  <div class="panel-body">
+    <div class="form-group">
+      <textarea ng-model="content" redactor="{air: true}" cols="30" rows="10"></textarea>
+    </div>
+    <strong>Markup</strong>
+    <pre>
+      &lt;textarea ng-model="content" redactor="{air: true}" cols="30" rows="10"&gt;&lt;/textarea&gt;
+    </pre>
+  </div>
+</div>
