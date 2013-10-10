@@ -33,6 +33,7 @@
           // set the initial value.
           $timeout(function () {
             editor = element.redactor(options);
+            ngModel.$render();
           });
 
           ngModel.$render = function () {
