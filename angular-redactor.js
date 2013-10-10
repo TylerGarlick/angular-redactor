@@ -14,6 +14,7 @@
         restrict: 'A',
         require: "ngModel",
         link: function (scope, element, attrs, ngModel) {
+
           var updateModel = function updateModel(value) {
               scope.$apply(function () {
                 ngModel.$setViewValue(value);
@@ -37,7 +38,9 @@
 
           ngModel.$render = function () {
             if (angular.isDefined(editor)) {
-              element.redactor('set', ngModel.$viewValue || '');
+              $timeout(function() {
+                element.redactor('set', ngModel.$viewValue || '');
+              });
             }
           };
         }
