@@ -25,21 +25,22 @@
             },
             additionalOptions = attrs.redactor ?
                                 scope.$eval(attrs.redactor) : {},
-            editor;
+            editor,
+            $_element = angular.element(element);
 
           angular.extend(options, additionalOptions);
 
           // put in timeout to avoid $digest collision.  call render() to
           // set the initial value.
           $timeout(function () {
-            editor = element.redactor(options);
+            editor = $_element.redactor(options);
             ngModel.$render();
           });
 
           ngModel.$render = function () {
             if (angular.isDefined(editor)) {
               $timeout(function() {
-                element.redactor('set', ngModel.$viewValue || '');
+                $_element.redactor('set', ngModel.$viewValue || '');
               });
             }
           };
