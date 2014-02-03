@@ -1,7 +1,7 @@
 {
   "name": "angular-redactor",
   "main": "angular-redactor.js",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "homepage": "https://github.com/TylerGarlick/angular-redactor",
   "authors": [
     "Tyler Garlick <tjgarlick@gmail.com>"
@@ -11,7 +11,8 @@
     "Redactor",
     "WYSIWYG",
     "Angular",
-    "Directives"
+    "Directives",
+    "Html5 Editor"
   ],
   "license": "MIT",
   "ignore": [
@@ -23,8 +24,8 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "*",
-    "angular": "*",
-    "angular-route": "*"
+    "jquery": "2.0.3",
+    "angular": "1.2.0",
+    "angular-route": "1.2.0"
   }
 }
