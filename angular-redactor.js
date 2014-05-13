@@ -16,8 +16,11 @@
         link: function (scope, element, attrs, ngModel) {
 
           var updateModel = function updateModel(value) {
-              scope.$apply(function () {
-                ngModel.$setViewValue(value);
+            // $timeout to avoid $digest collision
+              $timeout(function () {
+                scope.$apply(function () {
+                  ngModel.$setViewValue(value);
+                });
               });
             },
             options = {
