@@ -16,10 +16,13 @@
         link: function (scope, element, attrs, ngModel) {
 
           var updateModel = function updateModel(value) {
-              scope.$apply(function () {
-                ngModel.$setViewValue(value);
-              });
-            },
+    				  /* fix for html code view in redactor v9.2.1+ */
+    				  if(element.not(':visible')) {
+    					  scope.$apply(function () {
+    						  ngModel.$setViewValue(value);
+    					  });
+    				  }
+    				},
             options = {
               changeCallback: updateModel
             },
