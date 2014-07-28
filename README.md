@@ -32,6 +32,14 @@ With Options
 
 You can pass options directly to Redactor by specifying them as the value of the `redactor` attribute.
 
+Global Options
+```js
+angular.module('app', ['angular-redactor'])
+  .config(function(redactorOptions) {
+    redactorOptions.buttons = ['formatting', '|', 'bold', 'italic']; 
+  });
+```
+
 
 Check out the demo folder where you can see a working example.  https://github.com/TylerGarlick/angular-redactor/tree/master/demo
 

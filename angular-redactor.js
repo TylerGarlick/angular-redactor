@@ -8,11 +8,15 @@
    *      redactor: hash (pass in a redactor options hash)
    *
    */
+
+  var redactorOptions = {};
+
   angular.module('angular-redactor', [])
-    .directive("redactor", ['$timeout', function ($timeout) {
+    .constant('redactorOptions', redactorOptions)
+    .directive('redactor', ['$timeout', function ($timeout) {
       return {
         restrict: 'A',
-        require: "ngModel",
+        require: 'ngModel',
         link: function (scope, element, attrs, ngModel) {
 
           var updateModel = function updateModel(value) {
@@ -24,11 +28,11 @@
               changeCallback: updateModel
             },
             additionalOptions = attrs.redactor ?
-                                scope.$eval(attrs.redactor) : {},
+              scope.$eval(attrs.redactor) : {},
             editor,
             $_element = angular.element(element);
 
-          angular.extend(options, additionalOptions);
+          angular.extend(options, redactorOptions, additionalOptions);
 
           // put in timeout to avoid $digest collision.  call render() to
           // set the initial value.
