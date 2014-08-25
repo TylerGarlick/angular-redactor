@@ -19,6 +19,9 @@
         require: 'ngModel',
         link: function (scope, element, attrs, ngModel) {
 
+	  // Expose scope var with loaded state of Redactor
+	  scope.redactorLoaded = false;
+
           var updateModel = function updateModel(value) {
             // $timeout to avoid $digest collision
               $timeout(function () {
@@ -48,7 +51,8 @@
             if (angular.isDefined(editor)) {
               $timeout(function() {
                 $_element.redactor('set', ngModel.$viewValue || '');
-              });
+                scope.redactorLoaded = true;
+	      });
             }
           };
         }
