@@ -8,6 +8,7 @@ Usage
 --------------
 
 1. Include the redactor libraries
+  1a. You can do this with: bower install redactor
 2. In your angular application register angular-redactor as a dependency.
 3. Add the necessary html to view the editor.
 
