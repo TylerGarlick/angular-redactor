@@ -47,7 +47,7 @@
           ngModel.$render = function () {
             if (angular.isDefined(editor)) {
               $timeout(function() {
-                $_element.redactor('set', ngModel.$viewValue || '');
+                $_element.redactor('insert.set', ngModel.$viewValue || '');
               });
             }
           };
@@ -55,4 +55,3 @@
       };
     }]);
 })();
-
