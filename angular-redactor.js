@@ -37,6 +37,14 @@
 
           angular.extend(options, redactorOptions, additionalOptions);
 
+          // prevent collision with the constant values on ChangeCallback
+          if (!angular.isUndefined(redactorOptions.changeCallback)) {
+            options.changeCallback = function () {
+              updateModel.call(this);
+              redactorOptions.changeCallback.call(this);
+            }
+          }
+
           // put in timeout to avoid $digest collision.  call render() to
           // set the initial value.
           $timeout(function () {
