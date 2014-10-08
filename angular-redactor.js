@@ -37,6 +37,14 @@
 
           angular.extend(options, redactorOptions, additionalOptions);
 
+          // prevent collision with the constant values on ChangeCallback
+          if (!angular.isUndefined(redactorOptions.changeCallback)) {
+            options.changeCallback = function () {
+              updateModel.call(this);
+              redactorOptions.changeCallback.call(this);
+            }
+          }
+
           // put in timeout to avoid $digest collision.  call render() to
           // set the initial value.
           $timeout(function () {
@@ -47,7 +55,11 @@
           ngModel.$render = function () {
             if (angular.isDefined(editor)) {
               $timeout(function() {
-                $_element.redactor('set', ngModel.$viewValue || '');
+                $_element.redactor('code.set', ngModel.$viewValue || '');
+                //remove the placeholder if the default value wasn't null.
+                if (ngModel.$viewValue) {
+                  $_element.redactor('placeholder.remove');
+                }
               });
             }
           };
