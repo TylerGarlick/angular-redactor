@@ -56,6 +56,10 @@
             if (angular.isDefined(editor)) {
               $timeout(function() {
                 $_element.redactor('code.set', ngModel.$viewValue || '');
+                //remove the placeholder if the default value wasn't null.
+                if (ngModel.$viewValue) {
+                  $_element.redactor('placeholder.remove');
+                }
               });
             }
           };
