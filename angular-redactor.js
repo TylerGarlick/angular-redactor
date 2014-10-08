@@ -47,7 +47,7 @@
           ngModel.$render = function () {
             if (angular.isDefined(editor)) {
               $timeout(function() {
-                $_element.redactor('set', ngModel.$viewValue || '');
+                $_element.redactor('code.set', ngModel.$viewValue || '');
               });
             }
           };
