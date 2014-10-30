@@ -7,9 +7,10 @@ Angular Redactor is an angular directive for the Redactor editor.  http://impera
 Usage
 --------------
 
-1. Include the redactor libraries
-2. In your angular application register angular-redactor as a dependency.
-3. Add the necessary html to view the editor.
+1. Install redactor: bower install redactor
+2. Include the redactor libraries
+3. In your angular application register angular-redactor as a dependency.
+4. Add the necessary html to view the editor.
 
 Registration
 
