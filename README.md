@@ -7,7 +7,7 @@ Angular Redactor is an angular directive for the Redactor editor.  http://impera
 Important Changes
 --------------
 
-As of version 1.0.2, there is an additional file (angular-redactor-9.x) has been added to accommodate the the 9.x version of redactor, the angular-redactor.js will support the latest version of redactor.
+As of version 1.1.0, there is an additional file (angular-redactor-9.x) has been added to accommodate the the 9.x version of redactor, the angular-redactor.js will support the latest version of redactor.
 
 
 Usage
