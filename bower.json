@@ -1,7 +1,7 @@
 {
   "name": "angular-redactor",
   "main": "angular-redactor.js",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "homepage": "https://github.com/TylerGarlick/angular-redactor",
   "authors": [
     "Tyler Garlick <tjgarlick@gmail.com>"
@@ -26,5 +26,8 @@
   "dependencies": {
     "jquery": ">=2.0.0",
     "angular": ">=1.2.0"
+  },
+  "devDependencies": {
+    "angular-route": "~1.3.1"
   }
 }

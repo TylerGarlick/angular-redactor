@@ -4,10 +4,16 @@ angular-redactor
 Angular Redactor is an angular directive for the Redactor editor.  http://imperavi.com/redactor/
 
 
+Important Changes
+--------------
+
+As of version 1.0.2, there is an additional file (angular-redactor-9.x) has been added to accommodate the the 9.x version of redactor, the angular-redactor.js will support the latest version of redactor.
+
+
 Usage
 --------------
 
-1. Include the redactor libraries
+1. Include the redactor libraries from http://imperavi.com/redactor/ (The bower version of redactor is unsupported)
 2. In your angular application register angular-redactor as a dependency.
 3. Add the necessary html to view the editor.
 
