@@ -41,10 +41,11 @@
                     angular.extend(options, redactorOptions, additionalOptions);
 
                     // prevent collision with the constant values on ChangeCallback
-                    if(!angular.isUndefined(redactorOptions.changeCallback)) {
-                        options.changeCallback = function() {
-                            updateModel.call(this);
-                            redactorOptions.changeCallback.call(this);
+                    var changeCallback = additionalOptions.changeCallback || redactorOptions.changeCallback;
+                    if (changeCallback) {
+                        options.changeCallback = function(value) {
+                            updateModel.call(this, value);
+                            changeCallback.call(this, value);
                         }
                     }
 
