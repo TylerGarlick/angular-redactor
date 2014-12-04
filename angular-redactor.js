@@ -59,7 +59,7 @@
                     ngModel.$render = function() {
                         if(angular.isDefined(editor)) {
                             $timeout(function() {
-                                $_element.redactor('insert.set', ngModel.$viewValue || '');
+                                $_element.redactor('code.set', ngModel.$viewValue || '');
                                 scope.redactorLoaded = true;
                             });
                         }
