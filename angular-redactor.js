@@ -1,6 +1,5 @@
 (function () {
   'use strict';
-
   /**
    * usage: <textarea ng-model="content" redactor></textarea>
    *
@@ -33,8 +32,7 @@
 
           angular.extend(options, additionalOptions);
 
-          // put in timeout to avoid $digest collision.  call render() to
-          // set the initial value.
+          // put in timeout to avoid $digest collision.  call render() to set the initial value.
           $timeout(function () {
             editor = $_element.redactor(options);
             ngModel.$render();
@@ -44,6 +42,7 @@
             if (angular.isDefined(editor)) {
               $timeout(function() {
                 $_element.redactor('set', ngModel.$viewValue || '');
+				ngForm.$setPristine();
               });
             }
           };
