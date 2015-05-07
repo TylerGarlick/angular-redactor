@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/TylerGarlick/angular-redactor.png?label=ready&title=Ready)](https://waffle.io/TylerGarlick/angular-redactor)
 angular-redactor
 ================
 
