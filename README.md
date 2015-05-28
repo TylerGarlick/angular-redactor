@@ -55,5 +55,5 @@ Check out the demo folder where you can see a working example.  https://github.c
 Bower Installation
 --------------
 ```js
-bower install angular-redactor
+bower install git@github.com:MrZaYaC/angular-redactor.git
 ```
