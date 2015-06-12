@@ -17,6 +17,9 @@
             return {
                 restrict: 'A',
                 require: 'ngModel',
+                scope: {
+                    redactor: '='
+                },
                 link: function(scope, element, attrs, ngModel) {
 
                     // Expose scope var with loaded state of Redactor
@@ -33,8 +36,7 @@
                         options = {
                             changeCallback: updateModel
                         },
-                        additionalOptions = attrs.redactor ?
-                            scope.$eval(attrs.redactor) : {},
+                        additionalOptions = scope.redactor ? scope.redactor : {},
                         editor,
                         $_element = angular.element(element);
 
@@ -63,6 +65,14 @@
                             });
                         }
                     };
+                    scope.$watch(function(){return scope.redactor}, function(newValue, oldValue){
+                        angular.extend(options, newValue);
+                        $timeout(function() {
+                            editor.redactor('core.destroy');
+                            editor = $_element.redactor(options);
+                            ngModel.$render();
+                        });
+                    });
                 }
             };
         }]);
