@@ -54,6 +54,10 @@
                     $timeout(function() {
                         editor = $_element.redactor(options);
                         ngModel.$render();
+                        element.on('remove',function(){
+                            element.off('remove');
+                            element.redactor('core.destroy');
+                        });
                     });
 
                     ngModel.$render = function() {
