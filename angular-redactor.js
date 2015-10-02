@@ -25,9 +25,7 @@
                     var updateModel = function updateModel(value) {
                             // $timeout to avoid $digest collision
                             $timeout(function() {
-                                scope.$apply(function() {
-                                    ngModel.$setViewValue(value);
-                                });
+                                ngModel.$setViewValue(value);
                             });
                         },
                         options = {
@@ -53,6 +51,7 @@
                     $timeout(function() {
                         editor = element.redactor(options);
                         ngModel.$render();
+                        ngModel.$setPristine();
                         element.on('remove',function(){
                             element.off('remove');
                             element.redactor('core.destroy');
