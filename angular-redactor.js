@@ -31,7 +31,13 @@
                             });
                         },
                         options = {
-                            changeCallback: updateModel
+                            callbacks: {
+                                change: function() {
+                                    if (scope.redactorLoaded) {
+                                        updateModel(this.code.get());
+                                    }
+                                }
+                            } 
                         },
                         additionalOptions = attrs.redactor ?
                             scope.$eval(attrs.redactor) : {},
@@ -45,7 +51,7 @@
                         options.changeCallback = function(value) {
                             updateModel.call(this, value);
                             changeCallback.call(this, value);
-                        }
+                        };
                     }
 
                     // put in timeout to avoid $digest collision.  call render() to
