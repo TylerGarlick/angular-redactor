@@ -40,7 +40,7 @@
                     var redactorCallbacks = {};
                     if (additionalOptions.hasOwnProperty('callbacks') === true){
                         additionalOptions.callbacks.forEach(function(callback){
-                            redactorCallbacks[callback] = window[callback]
+                            redactorCallbacks[callback.type] = window[callback.functionName];
                         });
                     }
 
