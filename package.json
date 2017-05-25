@@ -1,0 +1,29 @@
+{
+  "name": "angular-redactor",
+  "version": "1.1.7",
+  "description": "Directive for redactor WYSIWYG editor",
+  "main": "angular-redactor.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TylerGarlick/angular-redactor.git"
+  },
+  "keywords": [
+    "Redactor",
+    "WYSIWYG",
+    "Angular",
+    "Directives",
+    "Html5",
+    "Editor"
+  ],
+  "author": [
+    "Tyler Garlick <tjgarlick@gmail.com>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TylerGarlick/angular-redactor/issues"
+  },
+  "homepage": "https://github.com/TylerGarlick/angular-redactor#readme"
+}

@@ -49,7 +49,7 @@ Global Options
 ```js
 angular.module('app', ['angular-redactor'])
   .config(function(redactorOptions) {
-    redactorOptions.buttons = ['formatting', '|', 'bold', 'italic']; 
+    redactorOptions.buttons = ['formatting', '|', 'bold', 'italic'];
   });
 ```
 
@@ -62,4 +62,10 @@ Bower Installation
 --------------
 ```js
 bower install angular-redactor
+```
+
+NPM Installation
+--------------
+```js
+npm install angular-redactor
 ```
