@@ -37,7 +37,14 @@
                             scope.$eval(attrs.redactor) : {},
                         editor;
 
-                    angular.extend(options, redactorOptions, additionalOptions);
+                    var redactorCallbacks = {};
+                    if (additionalOptions.hasOwnProperty('callbacks') === true){
+                        additionalOptions.callbacks.forEach(function(callback){
+                            redactorCallbacks[callback.type] = window[callback.functionName];
+                        });
+                    }
+
+                    angular.extend(options, redactorOptions, additionalOptions, redactorCallbacks);
 
                     // prevent collision with the constant values on ChangeCallback
                     var changeCallback = additionalOptions.changeCallback || redactorOptions.changeCallback;
@@ -72,4 +79,3 @@
             };
         }]);
 })();
-
