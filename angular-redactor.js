@@ -21,13 +21,18 @@
 
                     // Expose scope var with loaded state of Redactor
                     scope.redactorLoaded = false;
-
+                    
+                    var assignPristine = true;
                     var updateModel = function updateModel(value) {
                             // $timeout to avoid $digest collision
                             $timeout(function() {
-                                scope.$apply(function() {
+                                if(value) {
                                     ngModel.$setViewValue(value);
-                                });
+                                    if(assignPristine) {
+                                        ngModel.$setPristine();
+                                        assignPristine = false;
+                                    }
+                                }
                             });
                         },
                         options = {
@@ -72,4 +77,3 @@
             };
         }]);
 })();
-
