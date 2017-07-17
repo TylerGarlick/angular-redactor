@@ -49,7 +49,7 @@
                     });
 
                     ngModel.$render = function() {
-                        if(angular.isDefined(editor)) {
+                        if(angular.isDefined(editor) && !scope.redactorLoaded) {
                             $timeout(function() {
                                 element.redactor('code.set', ngModel.$viewValue || '');
                                 scope.redactorLoaded = true;
