@@ -56,6 +56,10 @@
                             });
                         }
                     };
+
+                    scope.$on('$destroy', function() {
+                        element.redactor('core.destroy');
+                    });
                 }
             };
         }]);
