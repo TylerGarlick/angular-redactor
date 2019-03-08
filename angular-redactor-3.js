@@ -1,66 +1,84 @@
 (function() {
-    'use strict';
+  'use strict';
 
-    /**
-     * usage: <textarea ng-model="content" redactor></textarea>
-     *
-     *    additional options:
-     *      redactor: hash (pass in a redactor options hash)
-     *
-     */
+  /**
+   * usage: <textarea ng-model="content" redactor></textarea>
+   *
+   *    additional options:
+   *      redactor: hash (pass in a redactor options hash)
+   *
+   */
 
-    var redactorOptions = {};
+  var redactorOptions = {};
 
-    angular.module('angular-redactor', [])
-        .constant('redactorOptions', redactorOptions)
-        .directive('redactor', ['$timeout', function($timeout) {
-            return {
-                restrict: 'A',
-                require: 'ngModel',
-                link: function(scope, element, attrs, ngModel) {
+  angular
+    .module('angular-redactor', [])
+    .constant('redactorOptions', redactorOptions)
+    .directive('redactor', [
+      '$timeout',
+      function($timeout) {
+        return {
+          restrict: 'A',
+          require: 'ngModel',
+          link: function(scope, element, attrs, ngModel) {
+            var randomId =
+                'redactor-' +
+                Math.floor((1 + Math.random()) * 2e13)
+                  .toString(16)
+                  .substr(1) +
+                +new Date(),
+              debounce;
 
-                    // Expose scope var with loaded state of Redactor
-                    scope.redactorLoaded = false;
+            element.attr('id', randomId);
 
-                    var updateModel = function updateModel(value) {
-                            // $timeout to avoid $digest collision
-                            $timeout(function() {
-                                scope.$apply(function() {
-                                    ngModel.$setViewValue(value);
-                                });
-                            });
-                        },
-                        options = {
-                            callbacks: {
-                                change: updateModel
-                            }
-                        },
-                        additionalOptions = attrs.redactor ?
-                            scope.$eval(attrs.redactor) : {},
-                        editor;
+            // Expose scope var with loaded state of Redactor
+            scope.redactorLoaded = false;
 
-                    angular.extend(options, redactorOptions, additionalOptions);
-
-                    // put in timeout to avoid $digest collision.  call render()
-                    // to set the initial value.
-                    $timeout(function() {
-                        editor = $R(element[0], options);
-                        ngModel.$render();
-                    });
-
-                    ngModel.$render = function() {
-                        if(angular.isDefined(editor)) {
-                            $timeout(function() {
-                                element.redactor('code.set', ngModel.$viewValue || '');
-                                scope.redactorLoaded = true;
-                            });
-                        }
-                    };
-
-                    scope.$on('$destroy', function() {
-                        element.redactor('core.destroy');
-                    });
+            var updateModel = function updateModel(value) {
+                if (debounce) {
+                  $timeout.cancel(debounce);
+                  debounce = undefined;
                 }
+                // $timeout to avoid $digest collision
+                debounce = $timeout(function() {
+                  ngModel.$setViewValue(value);
+                  debounce = undefined;
+                }, 500);
+              };
+
+            var options = {
+                callbacks: {
+                  changed: updateModel
+                }
+              },
+              additionalOptions = attrs.redactor
+                ? scope.$eval(attrs.redactor)
+                : {},
+              editor;
+
+            angular.extend(options, redactorOptions, additionalOptions);
+
+            // put in timeout to avoid $digest collision.  call render()
+            // to set the initial value.
+            $timeout(function() {
+              editor = $R('#' + randomId, options);
+              ngModel.$render();
+            });
+
+            ngModel.$render = function() {
+              if (angular.isDefined(editor)) {
+                $timeout(function() {
+                  editor.source.setCode(ngModel.$viewValue || '');
+                  scope.redactorLoaded = true;
+                });
+              }
             };
-        }]);
+
+            scope.$on('$destroy', function() {
+              $R('#' + randomId, 'destroy');
+            });
+          }
+        };
+      }
+    ]);
 })();
