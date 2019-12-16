@@ -22,7 +22,7 @@
           require: 'ngModel',
           link: function(scope, element, attrs, ngModel) {
             var castFunction = function (fn, defaultOutput) {
-              Object.prototype.toString.call(fn) === '[object Function]'
+              return Object.prototype.toString.call(fn) === '[object Function]'
               ? fn
               : function() {}
             }
