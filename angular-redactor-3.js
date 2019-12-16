@@ -53,6 +53,7 @@
               };
 
             var options = {
+                spellcheck: false,
                 callbacks: {
                   changed: updateModel
                 }
