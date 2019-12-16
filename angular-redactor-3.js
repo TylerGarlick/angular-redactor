@@ -21,10 +21,27 @@
           restrict: 'A',
           require: 'ngModel',
           link: function(scope, element, attrs, ngModel) {
-            var castFunction = function (fn, defaultOutput) {
-              return Object.prototype.toString.call(fn) === '[object Function]'
-              ? fn
-              : function() {}
+            function _get(obj, path, defaultValue, justExistence) {
+              if (!path) return undefined;
+              var tree = path.split(/(?:\[|\]|\]?\.)/i).filter(i => i !== "");
+              let fullDepth = obj || {};
+              while (tree.length) {
+                const currentDepth = tree.shift();
+                if (fullDepth[currentDepth]) {
+                  fullDepth = fullDepth[currentDepth];
+                } else {
+                  tree.splice(0);
+                  return defaultValue;
+                }
+              }
+              if (justExistence) {
+                return typeof fullDepth !== "undefined" && fullDepth !== null;
+              }
+              return fullDepth;
+            }
+          
+            function _hasIn(obj, path) {
+              return _get(obj, path, undefined, true);
             }
 
             var randomId =
@@ -47,7 +64,9 @@
                 }
                 // $timeout to avoid $digest collision
                 debounce = $timeout(function() {
-                  castFunction((ngModel || {}).$setViewValue)(value);
+                  if (_hasIn(ngModel, '$setViewValue')) {
+                    ngModel.$setViewValue(value);
+                  }
                   debounce = undefined;
                 }, 250);
               };
