@@ -21,6 +21,12 @@
           restrict: 'A',
           require: 'ngModel',
           link: function(scope, element, attrs, ngModel) {
+            var castFunction = function (fn, defaultOutput) {
+              Object.prototype.toString.call(fn) === '[object Function]'
+              ? fn
+              : function() {}
+            }
+
             var randomId =
                 'redactor-' +
                 Math.floor((1 + Math.random()) * 2e13)
@@ -41,9 +47,9 @@
                 }
                 // $timeout to avoid $digest collision
                 debounce = $timeout(function() {
-                  ngModel.$setViewValue(value);
+                  castFunction((ngModel || {}).$setViewValue)(value);
                   debounce = undefined;
-                }, 500);
+                }, 250);
               };
 
             var options = {
