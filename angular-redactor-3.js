@@ -60,12 +60,13 @@
             var updateModel = function updateModel(value) {
                 if (debounce) {
                   $timeout.cancel(debounce);
-                  debounce = undefined;
                 }
                 // $timeout to avoid $digest collision
                 debounce = $timeout(function() {
                   if (_hasIn(ngModel, '$setViewValue')) {
-                    ngModel.$setViewValue(value);
+                    try {
+                      ngModel.$setViewValue(value);
+                    } catch(e) {}
                   }
                   debounce = undefined;
                 }, 250);
